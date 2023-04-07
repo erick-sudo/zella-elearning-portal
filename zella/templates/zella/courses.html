@@ -1,0 +1,18 @@
+{% extends "zella/base.html" %}
+
+{% block content %}
+
+<h1 class="text-xl font-bold text-center my-4">Courses</h1>
+<div class="flex flex-wrap">
+{% for course in courses %}
+
+    <div class=" max-w-[400px] min-w-[400px] m-3 shadow-md shadow-green-900 rounded-md text-center overflow-hidden bg-white border-2 border-green-800 pb-2">
+        <h2 class="font-bold px-3 py-12 bg-green-900 text-white">{{course}}</h2>
+        <h2 class="text-sm p-3 bg-slate-400">{{course.college}}</h2>
+        <p class=" p-3">{{course.college.abbr}} - {{course.abbr}}<p/>
+    </div>
+
+{% endfor %}
+</div>
+
+{% endblock %}

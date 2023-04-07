@@ -1,0 +1,36 @@
+{% extends "zella/base.html" %}
+
+{% block content %}
+
+  <div class="bg-sky-100 fixed top-0 right-0 left-0 bottom-0 flex justify-center items-center">
+    <div class="max-w-lg mx-auto text-white bg-slate-800 p-3">
+        <h1 class="flex flex-col text-center">Register</h1>
+        <form class="flex flex-col p-3" action="/zella/register/" method="post">
+            {% csrf_token %}
+            <label for="username">User name:</label>
+            <input class="text-black px-3" type="text" {% if username %}value={{username}}{% endif %} name="username" id="username">
+            {% if integrity %}<p class="text-sm text-red-600 text-center">{{integrity}}</p>{% endif %}
+            <label for="firstname">First Name:</label>
+            <input class="text-black px-3" type="text" {% if firstname %}value={{firstname}}{% endif %} name="firstname" id="firstname">
+            <label for="lastname">Last Name:</label>
+            <input class="text-black px-3" type="text" {% if lastname %}value={{lastname}}{% endif %} name="lastname" id="lastname">
+            <label for="email">Email:</label>
+            <input class="text-black px-3" type="email" {% if email %}value={{email}}{% endif %} name="email" id="email">
+            <label for="password">Password:</label>
+            <input class="text-black text px-3" type="password" {% if password %}value={{password}}{% endif %} name="password" id="password">
+            <label for="confirm_password">Confirm Password:</label>
+            <input class="text-black text px-3" type="password" {% if confirm_password %}value={{confirm_password}}{% endif %} name="confirm_password" id="confirm_password">
+
+            {% if errors %}
+                <p class="text-sm text-center text-red-600">{{errors}}</p>
+            {% endif %}
+
+            <a class="text-sky-600 mt-2" href="/zella/login">Login</a>
+
+            <input class="bg-green-700 w-max py-1 px-3 mx-auto mt-4 rounded-md" type="submit" value="Submit" />
+            <input type="hidden" name="next" value="{{ next|escape }}" />
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

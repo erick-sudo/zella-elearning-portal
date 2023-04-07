@@ -1,0 +1,50 @@
+{% extends "zella/base.html" %}
+
+{% block content %}
+
+<div class="font-bold text-center">
+    <h1 class="text-xl text-white bg-green-800 py-4 drop-shadow">{{user.course.college}}</h1>
+    <h3 class="mb-4 py-2 text-green-800 bg-slate-400">{{user.course}}<h3>
+</div>
+<div>
+    <div class="flex">
+        <div class="max-w-lg font-bold mx-auto shadow-md shadow-black flex flex-col py-3 px-8 bg-gradient-to-tr from-white">
+            <div>
+                <label>- First Name</label>
+                <h3 class="ml-8 text-green-800">{{user.firstname}}<h3>
+            </div>
+            <div>
+                <label>- Last Name</label>
+                <h3 class="ml-8 text-green-800">{{user.lastname}}<h3>
+            </div>
+            <div>
+                <label>- Date Joined</label>
+                <h3 class="ml-8 text-green-800">{{user.date_joined}}<h3>
+            </div>
+            <div>- 
+                <input type="checkbox" name="staff" checked={{user.is_staff}} readonly disabled />
+                <label>Is Staff</label>
+            </div>
+            <div >- 
+                <input type="checkbox" name="staff" checked={{user.is_active}} readonly disabled />
+                <label>Active</label>
+            </div>
+        </div>
+        <div >
+            <img class="h-48" src="https://cdn.pixabay.com/photo/2023/04/02/07/44/plant-7893938_960_720.jpg" alt="" />
+        </div>
+    </div>
+    <div class="border-t-2 border-green-900 mt-5 grid sm:grid-cols-2 md:grid-cols-3">
+    {% for course in courses %}
+
+        <div class=" max-w-lg m-3 shadow-md shadow-green-900 rounded-md text-center overflow-hidden bg-white border-2 border-green-800 pb-2">
+            <h2 class="font-bold px-3 py-12 bg-green-900 text-white">{{course}}</h2>
+            <h2 class="text-sm p-3 bg-slate-400">{{course.college}}</h2>
+            <p class=" p-3">{{course.college.abbr}} - {{course.abbr}}<p/>
+        </div>
+
+    {% endfor %}
+</div>
+</div>
+
+{% endblock %}

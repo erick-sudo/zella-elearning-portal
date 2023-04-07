@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en" class="">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <title>Zella E-Learning Portal</title>
+    <style>
+        input{
+            outline: none;
+        }
+        html::-webkit-scrollbar {
+            width: 0;
+        }
+    </style>
+  </head>
+  <body class="text-white">
+     <div class="flex bg-green-900 p-3">
+        <h1 class="font-bold text-[2em] flex-grow">Zella E-Learning</h1>
+        {% if user %}
+
+        <div class="flex flex-col cursor-pointer">
+            <div class="group relative ">
+                <div>
+                    <h3 class="font-bold px-2">{{user}}</h3>
+                    {% if user.is_staff %}
+                    <h3 class="font-bold px-2 text-amber-600">Administrator</h3>
+                    {% else %}
+                    <h3 class="font-bold px-2 text-amber-600">Student</h3>
+                    {% endif %}
+                </div>
+                <div class="group-hover:flex hidden absolute z-20 flex-col text-black bg-green-500 right-0 left-0">
+                    <a class="hover:bg-slate-900 py-2 hover:text-white px-2 w-full" href="/zella/profile">Profile</a>
+                    <a class="hover:bg-slate-900 py-2 hover:text-white px-2" href="/zella/logout">Logout</a>
+                </div>
+            </div>
+        </div>
+        
+        {% endif %}
+     </div>
+     <div class="flex ">
+        <div class="flex flex-col gap-8 bg-green-900">
+            <div class="flex max-w-[120px]">
+                <img class="" src="https://png.pngitem.com/pimgs/s/7-70388_school-house-png-school-icon-transparent-background-png.png" alt="Logo" />
+            </div>
+            <div class="flex flex-col text-center p-1 font-bold min-w-[120px]">
+                <a class="hover:bg-slate-900 py-2 hover:text-white" href="/zella/courses">Courses</a>
+                <a class="hover:bg-slate-900 py-2 hover:text-white" href="/zella/units">Units</a>
+                <a class="hover:bg-slate-900 py-2 hover:text-white" href="/zella/quizes">Quizes</a>
+                <a class="hover:bg-slate-900 py-2 hover:text-white" href="/zella/grades/{{user.pk}}">Grades</a>
+            </div>
+        </div>
+
+        <div class="flex-grow min-h-[100vh] text-black bg-slate-200">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+    
+    {% block footer %}
+        <div class="bg-green-900 min-h-[20vh] flex flex-col">
+            <div class="flex-grow">
+
+            </div>
+            <p class="text-center py-2">Copyright © 2023  zellaelearning.ac.ke</p>
+        </div>
+    {% endblock footer %}
+  </body>
+</html>

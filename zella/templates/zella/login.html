@@ -1,0 +1,26 @@
+{% extends "zella/base.html" %}
+
+{% block content %}
+
+  <div class="bg-sky-100 fixed top-0 right-0 left-0 bottom-0 flex justify-center items-center">
+    <div class="max-w-lg mx-auto text-white bg-slate-800 p-3">
+        <h1 class="flex flex-col text-center">Login</h1>
+        <form class="flex flex-col p-3" action="/zella/login/" method="post">
+            {% csrf_token %}
+            <label for="username">User name:</label>
+            <input class="text-black px-3" type="text" {% if username %}value={{username}}{% endif %} name="username" id="username">
+            <label for="password">Password:</label>
+            <input class="text-black text px-3" type="password" {% if password %}value={{password}}{% endif %} name="password"  id="password">
+
+            {% if error %}
+                <div class="text-red-600 py-2 text-[12px] font-bold text-center">{{error}}</div>
+            {% endif %}
+
+            <a class="text-sky-600" href="/zella/register/">Sign up</a>
+            <input class="bg-green-700 w-max py-1 px-3 mx-auto mt-4 rounded-md" type="submit" value="Login" />
+            <input type="hidden" name="next" value="{{ next|escape }}" />
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

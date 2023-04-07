@@ -1,0 +1,37 @@
+{% extends "zella/base.html" %}
+
+{% block content %}
+
+<div class="m-2 min-h-[40vh] border border-amber-900">
+    <h1 class="text-xl font-bold text-center py-2 border-b-2 text-white bg-green-900"> Registered Units</h1>
+    <div class="flex flex-wrap  justify-center">
+    {% for unit in registered_units %}
+
+        <div class=" max-w-[200px] min-w-[200px] m-3 shadow-md shadow-amber-900 rounded-md text-center overflow-hidden bg-white pb-2 hover:ring-4 hover:ring-amber-900/50">
+            <h2 class="font-bold p-3 bg-amber-900 text-white">{{unit.unit.name}}</h2>
+            <h2 class="text-sm p-3 bg-slate-400">{{unit.unit.course}}</h2>
+            <p class=" p-3">{{unit.unit}}<p/>
+            <a href="/zella/quizes" class="bg-amber-900 text-white my-2 px-3 py-2 rounded hover:bg-green-900 cursor-pointer">Quizzes</a>
+        </div>
+
+    {% endfor %}
+    </div>
+</div>
+
+<div class="m-2 border border-green-900">
+    <h1 class="text-xl font-bold text-center py-2 text-white bg-green-900"> Course Units</h1>
+    <div class="flex flex-wrap justify-center">
+    {% for unit in units %}
+
+        <div class=" max-w-[200px] min-w-[200px] m-3 shadow-md shadow-green-900 rounded-md text-center overflow-hidden bg-white pb-2">
+            <h2 class="font-bold p-3 bg-green-900 text-white">{{unit.name}}</h2>
+            <h2 class="text-sm p-3 bg-slate-400">{{unit.course}}</h2>
+            <p class=" p-3">{{unit}}<p/>
+            <a href="/zella/register_unit/{{user.pk}}/{{unit.pk}}" class="bg-green-700 text-white my-2 px-3 py-2 rounded hover:bg-green-900 cursor-pointer">Register</a>
+        </div>
+
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}

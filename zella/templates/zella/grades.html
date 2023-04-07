@@ -1,0 +1,16 @@
+{% extends "zella/base.html" %}
+
+{% block content %}
+
+<h1 class="font-bold text-[2em] text-white bg-green-700 py-2 pl-10">Grades</h1>
+<div class="mt-4 flex flex-wrap">
+    {% for grade in grades%}
+        <div class="flex flex-col max-w-[300px] min-w-[300px] rounded-md shadow-lg shadow-green-900 text-center font-bold overflow-hidden ml-3 mb-4">
+            <h1 class="flex justify-center items-center py-5 h-24 px-5 bg-green-900 text-white">{{grade.quiz}}</h1>
+            <div class=" py-6 text-[6em] bg-white text-green-900">{{grade.score}}%</div>
+            <h2 class="flex justify-center items-center flex-grow py-4 px-5 bg-green-900 text-white">{{grade.quiz.unit.name}}</h2>
+        </div>
+    {% endfor %}
+</div>
+
+{% endblock %}
